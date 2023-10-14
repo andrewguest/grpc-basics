@@ -1,0 +1,36 @@
+// Define that we're using the `proto3` syntax instead of the default `proto2` syntax
+syntax = "proto3";
+
+
+// Define a proto message data type name `PersonRequest`
+message PersonRequest {
+    /*
+    <field data type> <field name> = <field number>
+
+    The <field number> cannot be repurposed or reused. If a field is deleted then it's number should be reserved and NOT reused.
+
+    From a compatibility perspective, unique field numbers are the most vital piece of the message declaration. These numbers (the = 1 after the name declaration) are used as identifiers for fields after they are converted to binary. When the message is decoded, a crucial step for compatibility is allowing the parser to skip fields it doesn’t recognize so it’s possible to add new fields without breaking programs that weren’t designed to look for them.
+
+    The unique field number is combined with a wire type corresponding to the data type of the field. This identifier and type combination form the key of every field in a message. These fields combined give the receiver the ability to uniquely identify fields and determine the length of the field, so it knows when to start looking for the next field.
+
+    This means once a unique field number or length is set, it cannot be changed. Any program consuming or serializing protobuf data needs the number to be fixed forever, or both the sender and all the receivers must be updated.
+    */
+
+    string name = 1;
+    int32 age = 2;
+}
+
+
+// Define a proto message response that is returned
+message PersonResponse {
+
+    // Response message
+    string message = 1;
+}
+
+
+// Define a proto service
+// Protobuf Services use Protobuf Messages as their data types
+service Greeter {
+    rpc SayHello (PersonRequest) returns (PersonResponse) {}
+}
