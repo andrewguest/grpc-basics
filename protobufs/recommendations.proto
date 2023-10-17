@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+package recommendations;
 
 enum BookCategory {
     MYSTERY = 0;
@@ -7,21 +8,24 @@ enum BookCategory {
     SELF_HELP = 2;
 }
 
+message BookRecommendation {
+    int32 id = 1;
+    string title = 2;
+}
+
+// Request from the client -> server
 message RecommendationRequest {
     int32 user_id = 1;
     BookCategory category = 2;
     int32 max_results = 3;
 }
 
-message BookRecommendation {
-    int32 id = 1;
-    string title = 2;
-}
-
+// Response from the server -> client
 message RecommendationResponse {
     repeated BookRecommendation recommendations = 1;
 }
 
+// Unary communication (synchronous)
 service Recommendations {
     rpc Recommend (RecommendationRequest) returns (RecommendationResponse);
 }

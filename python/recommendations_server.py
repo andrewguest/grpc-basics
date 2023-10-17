@@ -2,14 +2,12 @@ import random
 from concurrent import futures
 
 import grpc
-
+import recommendations_pb2_grpc
 from recommendations_pb2 import (
     BookCategory,
     BookRecommendation,
     RecommendationResponse,
 )
-import recommendations_pb2_grpc
-
 
 # Mock database query and queryset
 books_by_category = {
@@ -42,7 +40,9 @@ books_by_category = {
 class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
 
     # Defines a Recommend() method on the class.
-    # This must have the same name as the RPC you define in your protobuf file. It also takes a RecommendationRequest and returns a RecommendationResponse just like in the protobuf definition. It also takes a context parameter.
+    # This must have the same name as the RPC you define in your protobuf file.
+    #   It also takes a RecommendationRequest and returns a RecommendationResponse just like in the protobuf definition.
+    #   It also takes a context parameter.
     # The context allows you to set the status code for the response.
     def Recommend(self, request, context):
         if request.category not in books_by_category:
