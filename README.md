@@ -76,6 +76,14 @@ rpc Greetings(stream HelloRequests) returns (stream HelloResponses);
 ---
 
 # How to compile `.proto` files to Python code
+1) Install the async `grpclib` package:
+
+```
+pip install "grpclib[protobuf]"
+```
+
+2) Compile the `.proto` file to 2 `.py` files:
+
 ```
 python -m grpc_tools.protoc -I <directory to search for imports in> --python_out=<directory to write output .py files to> --grpc_python_out=<directory to write output .py files to> <.proto file(s) to compile>
 ```

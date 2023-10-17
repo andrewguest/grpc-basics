@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+
+// Send a `name` to be used in the greeting response message
+message GreetingRequest {
+    string name = 1;
+}
+
+// Return a greeting message using the provided `name`
+message GreetingResponse {
+    string greeting = 1;
+}
+
+// Greeting service
+service Greeter {
+    rpc sayHello (GreetingRequest) returns (GreetingResponse);
+}
