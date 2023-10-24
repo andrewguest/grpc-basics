@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+
+// Movie type
+message MovieEntry {
+    // required field
+    string title = 1;
+}
+
+// Request
+message AllMoviesRequest {}
+
+// Response
+message AllMoviesResponse {
+    repeated MovieEntry movies = 1;
+}
+
+// Movies service
+service AllMovies {
+    rpc get_all_movies(AllMoviesRequest) returns (AllMoviesResponse) {}
+}
