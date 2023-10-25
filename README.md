@@ -79,7 +79,7 @@ rpc Greetings(stream HelloRequests) returns (stream HelloResponses);
 1) Install the async `grpclib` package:
 
 ```
-pip install "grpclib[protobuf]"
+pip install "grpclib[protobuf]" grpcio grpcio-tools
 ```
 
 2) Compile the `.proto` file to 2 `.py` files:
